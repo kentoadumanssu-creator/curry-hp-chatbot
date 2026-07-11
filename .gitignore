@@ -13,4 +13,5 @@ Thumbs.db
 # Dependencies
 node_modules
 
-# Old f
+# Old file, replaced by local-server.js (leftover broken content, excluded)
+dev-server.js

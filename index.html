@@ -564,13 +564,12 @@
        SCROLL REVEAL
     ========================================= */
     .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.85s ease, transform 0.85s ease;
+      opacity: 1;
+      transform: none;
     }
     .reveal.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
     .reveal-d1 { transition-delay: 0.1s; }
     .reveal-d2 { transition-delay: 0.2s; }
@@ -1287,4 +1286,33 @@
       async function sendMessage(text) {
         if (!text.trim() || isLoading) return;
         isLoading = true; sendBtn.disabled = true;
-        suggests.style.display = 'none
+        suggests.style.display = 'none';
+        addBubble(text, 'user');
+        history.push({ role: 'user', content: text });
+        showTyping();
+        try {
+          const res  = await fetch('/api/chat', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ messages: history }) });
+          const data = await res.json();
+          removeTyping();
+          const reply = data.reply || 'すみません、少し時間をおいて再度お試しください。';
+          addBubble(reply, 'bot');
+          history.push({ role: 'assistant', content: reply });
+        } catch(e) {
+          removeTyping();
+          addBubble('通信エラーが発生しました。しばらくしてからお試しください。', 'bot');
+        }
+        isLoading = false; sendBtn.disabled = false; input.focus();
+      }
+
+      sendBtn.addEventListener('click', () => { const t = input.value.trim(); input.value = ''; sendMessage(t); });
+      input.addEventListener('keydown', (e) => { if (e.key==='Enter' && !e.shiftKey) { e.preventDefault(); const t=input.value.trim(); input.value=''; sendMessage(t); } });
+    })();
+
+    function sendSuggest(btn) {
+      document.getElementById('chat-input').value = btn.textContent;
+      document.getElementById('chat-send').click();
+    }
+  </script>
+
+</body>
+</html>
