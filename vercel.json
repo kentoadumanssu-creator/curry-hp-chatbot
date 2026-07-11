@@ -1,0 +1,10 @@
+{
+  "framework": null,
+  "buildCommand": "echo build skipped",
+  "outputDirectory": ".",
+  "functions": {
+    "api/chat.js": {
+      "maxDuration": 15
+    }
+  }
+}

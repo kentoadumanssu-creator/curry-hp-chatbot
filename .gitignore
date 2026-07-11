@@ -1,0 +1,16 @@
+# Environment variable files (contain API keys - never commit)
+.env.local
+.env.*.local
+.env
+
+# Vercel
+.vercel
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules
+
+# Old f

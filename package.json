@@ -1,0 +1,9 @@
+{
+  "name": "arc-curry-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "spice curry cafe ARC ホームページ（チャットボット予約機能つき）",
+  "dependencies": {
+    "nodemailer": "^6.10.1"
+  }
+}

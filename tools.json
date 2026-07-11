@@ -1,0 +1,18 @@
+[
+  {
+    "name": "submit_reservation",
+    "description": "予約に必要な情報（希望日・希望時間・人数・お名前・電話番号）がすべて揃い、お客様が内容を確認・同意したときにだけ呼び出してください。情報が不足している間は呼び出さないでください。",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "予約者のお名前" },
+        "date": { "type": "string", "description": "ご希望日（例: 2026年7月20日）" },
+        "time": { "type": "string", "description": "ご希望時間（例: 18:30）" },
+        "party_size": { "type": "string", "description": "人数（例: 2名）" },
+        "phone": { "type": "string", "description": "当日連絡のつく電話番号" },
+        "notes": { "type": "string", "description": "アレルギーや席の希望など（任意。なければ空文字でよい）" }
+      },
+      "required": ["name", "date", "time", "party_size", "phone"]
+    }
+  }
+]
